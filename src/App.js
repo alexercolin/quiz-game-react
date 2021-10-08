@@ -1,11 +1,17 @@
-import InputQuestion from './components/InputQuestion'
-import ControlButtons from './components/ControlButtons'
+import InputQuestion from "./components/InputQuestion";
+import Questions from "./components/Questions";
+import { useState } from "react";
+
 function App() {
+  const [questions, setQuestions] = useState();
+  const quizQuestionsHandler = (quizQuestions) => {
+    setQuestions(quizQuestions);
+  };
   return (
-<div>
-  <InputQuestion />
-  <ControlButtons />
-</div>
+    <div>
+      <InputQuestion onShowQuestions={quizQuestionsHandler} />
+      <Questions quizQuestions={questions} />
+    </div>
   );
 }
 
