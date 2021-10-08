@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Button, Typography } from "@material-ui/core";
+import './style.css'
 
 const Questions = (props) => {
   const { quizQuestions } = props;
@@ -15,28 +17,45 @@ const Questions = (props) => {
   };
 
   if (quizQuestions === undefined) {
-    return <div>loading...</div>;
+    return ''
   }
 
   if (quizQuestions.length === currentQuestion) {
-    return <div>Você acertou {score} questões</div>;
+    return (
+      <>
+        <Typography variant="subtitle1">Você acertou {score} questões</Typography>
+        <div>
+          {quizQuestions.map((question) => (
+            <>
+              <li>{question.question}</li>
+              {question.incorrect_answers.map((incorrectAnswers) => (
+                <li>{incorrectAnswers}</li>
+              ))}
+              <li>{question.correct_answer}</li>
+            </>
+          ))}
+        </div>
+      </>
+    );
   }
 
   return (
     <div className="question-section">
       <div className="question-text">
-        <li>{quizQuestions?.[currentQuestion]?.question}</li>
+        <Typography variant="h6">{quizQuestions?.[currentQuestion]?.question}</Typography>
         {quizQuestions?.[currentQuestion]?.incorrect_answers.map(
           (answer, i) => (
             <li key={i}>
-              <button onClick={handleWrongAnswer}>{answer}</button>
+              <Button size="small" variant="contained" onClick={handleWrongAnswer}>
+                {answer}
+              </Button>
             </li>
           )
         )}
         <li>
-          <button onClick={handleCorrectAnswer}>
+          <Button size="small" variant="contained" onClick={handleCorrectAnswer}>
             {quizQuestions?.[currentQuestion]?.correct_answer}
-          </button>
+          </Button>
         </li>
       </div>
     </div>

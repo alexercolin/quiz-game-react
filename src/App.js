@@ -1,6 +1,8 @@
 import InputQuestion from "./components/InputQuestion";
 import Questions from "./components/Questions";
+import GameTitle from "./components/GameTitle";
 import { useState } from "react";
+import { Grid } from "@material-ui/core";
 
 function App() {
   const [questions, setQuestions] = useState();
@@ -8,10 +10,11 @@ function App() {
     setQuestions(quizQuestions);
   };
   return (
-    <div>
+    <Grid container direction="column" alignItems="center">
+      <GameTitle />
       <InputQuestion onShowQuestions={quizQuestionsHandler} />
       <Questions quizQuestions={questions} />
-    </div>
+    </Grid>
   );
 }
 
