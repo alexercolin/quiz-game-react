@@ -1,4 +1,10 @@
-
 .question-section {
-    padding: 0.5rem;
+  padding: 0.5rem;
+}
+
+.questions {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

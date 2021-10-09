@@ -1,0 +1,12 @@
+.report {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.questions-report {
+  list-style-type: none;
+  margin-right: 0;
+  padding: 0;
+}
