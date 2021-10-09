@@ -58,7 +58,7 @@ const Questions = (props) => {
           )
         )}
         <ul className="questions">
-          <li>
+          <li key={quizQuestions[currentQuestion].incorrect_answers}>
             <Button
               size="small"
               variant="contained"

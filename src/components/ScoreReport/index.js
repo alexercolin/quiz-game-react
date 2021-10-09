@@ -15,9 +15,9 @@ const ScoreReport = (props) => {
           {props.questions.map((question) => (
             <>
               <Typography variant="h6">{question.question}</Typography>
-              {question.incorrect_answers.map((incorrectAnswers) => (
+              {question.incorrect_answers.map((i,incorrectAnswers) => (
                 <ul className="questions-report">
-                  <li>
+                  <li key={i}>
                     <Button color="error" variant="contained">
                       {incorrectAnswers}
                     </Button>
@@ -25,7 +25,7 @@ const ScoreReport = (props) => {
                 </ul>
               ))}
               <ul className="questions-report">
-                <li>
+                <li key={props.questions.correct_answer}>
                   <Button color="success" variant="contained">
                     {question.correct_answer}
                   </Button>
