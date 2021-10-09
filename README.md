@@ -1,3 +1,6 @@
+<h1 align="center">
+    Quiz Game - React
+</h1>
 
 <h1 align="center">
     <img  src="https://ik.imagekit.io/ins9ecquwr9/quiz-game_f-4nGfyDx.gif?updatedAt=1633779595065">
