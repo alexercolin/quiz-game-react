@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Typography } from "@material-ui/core";
-import './style.css'
+import ScoreReport from "../ScoreReport";
+import "./style.css";
 
 const Questions = (props) => {
   const { quizQuestions } = props;
@@ -16,25 +17,21 @@ const Questions = (props) => {
     setCurrentQuestion(currentQuestion + 1);
   };
 
+  const playAgain = () => {
+    window.location.reload(false);
+  };
+
   if (quizQuestions === undefined) {
-    return ''
+    return "";
   }
 
   if (quizQuestions.length === currentQuestion) {
     return (
       <>
-        <Typography variant="subtitle1">Você acertou {score} questões</Typography>
-        <div>
-          {quizQuestions.map((question) => (
-            <>
-              <li>{question.question}</li>
-              {question.incorrect_answers.map((incorrectAnswers) => (
-                <li>{incorrectAnswers}</li>
-              ))}
-              <li>{question.correct_answer}</li>
-            </>
-          ))}
-        </div>
+        <Button variant="contained" color="success" onClick={playAgain}>
+          Play again
+        </Button>
+        <ScoreReport scorePoints={score} questions={quizQuestions} />
       </>
     );
   }
@@ -42,21 +39,35 @@ const Questions = (props) => {
   return (
     <div className="question-section">
       <div className="question-text">
-        <Typography variant="h6">{quizQuestions?.[currentQuestion]?.question}</Typography>
+        <Typography variant="h6">
+          {quizQuestions?.[currentQuestion]?.question}
+        </Typography>
         {quizQuestions?.[currentQuestion]?.incorrect_answers.map(
           (answer, i) => (
-            <li key={i}>
-              <Button size="small" variant="contained" onClick={handleWrongAnswer}>
-                {answer}
-              </Button>
-            </li>
+            <ul className="questions">
+              <li key={i}>
+                <Button
+                  size="small"
+                  variant="contained"
+                  onClick={handleWrongAnswer}
+                >
+                  {answer}
+                </Button>
+              </li>
+            </ul>
           )
         )}
-        <li>
-          <Button size="small" variant="contained" onClick={handleCorrectAnswer}>
-            {quizQuestions?.[currentQuestion]?.correct_answer}
-          </Button>
-        </li>
+        <ul className="questions">
+          <li>
+            <Button
+              size="small"
+              variant="contained"
+              onClick={handleCorrectAnswer}
+            >
+              {quizQuestions?.[currentQuestion]?.correct_answer}
+            </Button>
+          </li>
+        </ul>
       </div>
     </div>
   );
