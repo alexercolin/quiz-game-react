@@ -10,7 +10,7 @@ const ScoreReport = (props) => {
           You scored {props.scorePoints}{" "}
           {props.scorePoints === 1 ? "point" : "points"}
         </Typography>
-        <Typography variant="h6">Gabarito</Typography>
+        <Typography variant="h6">Answers List</Typography>
         <div>
           {props.questions.map((question) => (
             <>
